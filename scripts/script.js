@@ -4,7 +4,8 @@ let cuadrado,
   trianguloGrande2,
   trianguloMediano,
   trianguloPequeño,
-  trianguloPequeño2;
+  trianguloPequeño2,
+  romboide;
 
 const SCALING = 1;
 
@@ -43,7 +44,7 @@ function setup() {
 
   cuadrado.randomize();
 
-    //   Triangulo Grande Azul
+  //   Triangulo Grande Azul
   trianguloGrande = {
     _position: createVector(),
     _rotation: 0,
@@ -74,7 +75,7 @@ function setup() {
 
   trianguloGrande.randomize();
 
-//   Triangulo Grande Naranja
+  //   Triangulo Grande Naranja
   trianguloGrande2 = {
     _position: createVector(),
     _rotation: 0,
@@ -197,6 +198,37 @@ function setup() {
   };
 
   trianguloPequeño2.randomize();
+
+  //   Romboide Verde
+  romboide = {
+    _position: createVector(),
+    _rotation: 0,
+    _edge: 150,
+    _color: color("red"),
+    randomize: function () {
+      this._position = createVector(325, 100);
+      this._rotation = 0;
+      this._color = color("green");
+    },
+    shape: function () {
+      push();
+      quad(0, -12, 103, -100, 102, 75, -4, 186);
+      pop();
+    },
+    pick: function (x, y) {
+      console.error("pick lacks implementation!");
+    },
+    // position setter
+    set position(position) {
+      this._position = position;
+    },
+    // position getter
+    get position() {
+      return this._position;
+    },
+  };
+
+  romboide.randomize();
 }
 
 function draw() {
@@ -210,6 +242,7 @@ function draw() {
   displayPiece(trianguloMediano);
   displayPiece(trianguloPequeño);
   displayPiece(trianguloPequeño2);
+  displayPiece(romboide);
 }
 
 function displayPiece(piece) {
@@ -239,11 +272,13 @@ function gridHint(scale) {
 }
 
 function mouseDragged() {
-//   cuadrado.position = createVector(mouseX, mouseY);
-//   trianguloGrande.position = createVector(mouseX, mouseY);
-//   trianguloGrande2.position = createVector(mouseX, mouseY);
-//   trianguloPequeño.position = createVector(mouseX, mouseY);
-//   trianguloPequeño2.position = createVector(mouseX, mouseY);
+  //   cuadrado.position = createVector(mouseX, mouseY);
+  //   trianguloGrande.position = createVector(mouseX, mouseY);
+  //   trianguloGrande2.position = createVector(mouseX, mouseY);
+  //   trianguloMediano.position = createVector(mouseX, mouseY);
+  //   trianguloPequeño.position = createVector(mouseX, mouseY);
+  //   trianguloPequeño2.position = createVector(mouseX, mouseY);
+  //   romboide.position = createVector(mouseX, mouseY);
 }
 
 // Implement the mouseWheel function to set the piece rotation
@@ -255,3 +290,6 @@ function keyPressed() {
     grid = !grid;
   }
 }
+
+
+// by Sergio Rey 2022 
