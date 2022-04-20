@@ -206,17 +206,25 @@ function setup() {
     _position: createVector(),
     _rotation: 0,
     _edge: 150,
+    _rotationY: false,
     _color: color("red"),
     randomize: function () {
-      this._position = createVector(325, 100);
+      this._position = createVector(375, 100);
       this._rotation = 0;
       this._color = color("green");
     },
     shape: function () {
-      push();
-      quad(0, -12, 103, -100, 102, 75, -4, 186);
-      pop();
-    },
+      if(this._rotationY){
+        push();
+        quad(50, -12, -53, -100, -52, 75, 54, 186);
+        pop();
+      } else { 
+        push();
+        quad(-50, -12, 53, -100, 52, 75, -54, 186);
+        pop();
+      }
+     },
+    
     pick: function (x, y) {
       console.error("pick lacks implementation!");
     },
@@ -228,6 +236,9 @@ function setup() {
     get position() {
       return this._position;
     },
+    get romboide() {
+      return true;
+    }
   };
 
   romboide.randomize();
@@ -273,28 +284,28 @@ function gridHint(scale) {
   pop();
 }
 function mouseDragged() {
-   let color = get(mouseX, mouseY)
-   let vector = createVector(mouseX, mouseY)
+  let color = get(mouseX, mouseY);
+  let vector = createVector(mouseX, mouseY);
 
-    if (equals(color, [0, 0, 255, 255])){
+  if (equals(color, [0, 0, 255, 255])) {
     // Azul
     trianguloGrande.position = vector;
-  } else if (equals(color, [255, 165, 0, 255])){
+  } else if (equals(color, [255, 165, 0, 255])) {
     // Naranja
     trianguloGrande2.position = vector;
-  } else if (equals(color, [75, 0, 130, 255])){
+  } else if (equals(color, [75, 0, 130, 255])) {
     // Magenta
     trianguloPequeño2.position = vector;
-  }else if (equals(color, [255, 255, 0, 255])){
+  } else if (equals(color, [255, 255, 0, 255])) {
     // Amarillo
     cuadrado.position = vector;
-  }else if (equals(color, [255, 0, 255, 255])){
+  } else if (equals(color, [255, 0, 255, 255])) {
     // Indigo
     trianguloPequeño.position = vector;
-  }else if (equals(color, [0, 128, 0, 255])){
+  } else if (equals(color, [0, 128, 0, 255])) {
     // Verde
     romboide.position = vector;
-  } else if (equals(color, [255, 0, 0, 255])){
+  } else if (equals(color, [255, 0, 0, 255])) {
     // Rojo
     trianguloMediano.position = vector;
   }
@@ -302,31 +313,43 @@ function mouseDragged() {
 
 // Implement the mouseWheel function to set the piece rotation
 function mouseWheel(event) {
-  let color = get(mouseX, mouseY)
-  let rotationD = event.delta / 2;
+  let color = get(mouseX, mouseY);
+  let rotationD = event.delta / 10;
 
-  if (equals(color, [0, 0, 255, 255])){
+  if (equals(color, [0, 0, 255, 255])) {
     // Azul
     trianguloGrande._rotation = trianguloGrande._rotation - rotationD;
-  } else if (equals(color, [255, 165, 0, 255])){
+  } else if (equals(color, [255, 165, 0, 255])) {
     // Naranja
     trianguloGrande2._rotation = trianguloGrande2._rotation - rotationD;
-  } else if (equals(color, [75, 0, 130, 255])){
+  } else if (equals(color, [75, 0, 130, 255])) {
     // Magenta
     trianguloPequeño2._rotation = trianguloPequeño2._rotation - rotationD;
-  }else if (equals(color, [255, 255, 0, 255])){
+  } else if (equals(color, [255, 255, 0, 255])) {
     // Amarillo
     cuadrado._rotation = cuadrado._rotation - rotationD;
-  }else if (equals(color, [255, 0, 255, 255])){
+  } else if (equals(color, [255, 0, 255, 255])) {
     // Indigo
     trianguloPequeño._rotation = trianguloPequeño._rotation - rotationD;
-  }else if (equals(color, [0, 128, 0, 255])){
+  } else if (equals(color, [0, 128, 0, 255])) {
     // Verde
     romboide._rotation = romboide._rotation - rotationD;
-  } else if (equals(color, [255, 0, 0, 255])){
+  } else if (equals(color, [255, 0, 0, 255])) {
     // Rojo
     trianguloMediano._rotation = trianguloMediano._rotation - rotationD;
   }
+}
+
+function doubleClicked() {
+  let color = get(mouseX, mouseY);
+  
+  if (equals(color, [0, 128, 0, 255])) {
+    // Verde
+    if (romboide._rotationY){
+        romboide._rotationY = false
+      } else {
+     romboide._rotationY = true
+  }}
 }
 
 function keyPressed() {
@@ -336,5 +359,4 @@ function keyPressed() {
   }
 }
 
-
-// by Sergio Rey 2022 
+// by Sergio Rey 2022
