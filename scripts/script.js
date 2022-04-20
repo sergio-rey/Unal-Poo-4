@@ -9,8 +9,10 @@ let cuadrado,
 
 const SCALING = 1;
 
+const equals = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+
 function setup() {
-  createCanvas(430, 400);
+  createCanvas(860, 800);
 
   //   Cuadrado Amarrillo
   cuadrado = {
@@ -270,19 +272,62 @@ function gridHint(scale) {
   }
   pop();
 }
-
 function mouseDragged() {
-  //   cuadrado.position = createVector(mouseX, mouseY);
-  //   trianguloGrande.position = createVector(mouseX, mouseY);
-  //   trianguloGrande2.position = createVector(mouseX, mouseY);
-  //   trianguloMediano.position = createVector(mouseX, mouseY);
-  //   trianguloPequeño.position = createVector(mouseX, mouseY);
-  //   trianguloPequeño2.position = createVector(mouseX, mouseY);
-  //   romboide.position = createVector(mouseX, mouseY);
+   let color = get(mouseX, mouseY)
+   let vector = createVector(mouseX, mouseY)
+
+    if (equals(color, [0, 0, 255, 255])){
+    // Azul
+    trianguloGrande.position = vector;
+  } else if (equals(color, [255, 165, 0, 255])){
+    // Naranja
+    trianguloGrande2.position = vector;
+  } else if (equals(color, [75, 0, 130, 255])){
+    // Magenta
+    trianguloPequeño2.position = vector;
+  }else if (equals(color, [255, 255, 0, 255])){
+    // Amarillo
+    cuadrado.position = vector;
+  }else if (equals(color, [255, 0, 255, 255])){
+    // Indigo
+    trianguloPequeño.position = vector;
+  }else if (equals(color, [0, 128, 0, 255])){
+    // Verde
+    romboide.position = vector;
+  } else if (equals(color, [255, 0, 0, 255])){
+    // Rojo
+    trianguloMediano.position = vector;
+  }
 }
 
 // Implement the mouseWheel function to set the piece rotation
-function mouseWheel(event) {}
+function mouseWheel(event) {
+  let color = get(mouseX, mouseY)
+  let rotationD = event.delta / 2;
+
+  if (equals(color, [0, 0, 255, 255])){
+    // Azul
+    trianguloGrande._rotation = trianguloGrande._rotation - rotationD;
+  } else if (equals(color, [255, 165, 0, 255])){
+    // Naranja
+    trianguloGrande2._rotation = trianguloGrande2._rotation - rotationD;
+  } else if (equals(color, [75, 0, 130, 255])){
+    // Magenta
+    trianguloPequeño2._rotation = trianguloPequeño2._rotation - rotationD;
+  }else if (equals(color, [255, 255, 0, 255])){
+    // Amarillo
+    cuadrado._rotation = cuadrado._rotation - rotationD;
+  }else if (equals(color, [255, 0, 255, 255])){
+    // Indigo
+    trianguloPequeño._rotation = trianguloPequeño._rotation - rotationD;
+  }else if (equals(color, [0, 128, 0, 255])){
+    // Verde
+    romboide._rotation = romboide._rotation - rotationD;
+  } else if (equals(color, [255, 0, 0, 255])){
+    // Rojo
+    trianguloMediano._rotation = trianguloMediano._rotation - rotationD;
+  }
+}
 
 function keyPressed() {
   // toggle grid hint
