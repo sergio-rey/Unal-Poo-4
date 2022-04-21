@@ -31,8 +31,19 @@ function setup() {
       rect(0, 0, this._edge, this._edge);
       pop();
     },
-    pick: function (_x, _y) {
-      console.error("pick lacks implementation!");
+    pick: function (vector, x, y, margin = 50) {
+      let difx = vector.x - x;
+      let dify = vector.y - y;
+
+      if (
+        difx < margin &&
+        difx > margin - 2 * margin &&
+        dify < margin &&
+        dify > margin - 2 * margin
+      ) {
+        return true;
+      }
+      return false;
     },
     // position setter
     set position(position) {
@@ -62,8 +73,19 @@ function setup() {
       triangle(-200, 104, -15, -109, 200, 104);
       pop();
     },
-    pick: function (x, y) {
-      console.error("pick lacks implementation!");
+    pick: function (vector, x, y, margin = 50) {
+      let difx = vector.x - x;
+      let dify = vector.y - y;
+
+      if (
+        difx < margin &&
+        difx > margin - 2 * margin &&
+        dify < margin &&
+        dify > margin - 2 * margin
+      ) {
+        return true;
+      }
+      return false;
     },
     // position setter
     set position(position) {
@@ -93,8 +115,19 @@ function setup() {
       triangle(-212, 100, 0, -84, 212, 100);
       pop();
     },
-    pick: function (x, y) {
-      console.error("pick lacks implementation!");
+    pick: function (vector, x, y, margin = 50) {
+      let difx = vector.x - x;
+      let dify = vector.y - y;
+
+      if (
+        difx < margin &&
+        difx > margin - 2 * margin &&
+        dify < margin &&
+        dify > margin - 2 * margin
+      ) {
+        return true;
+      }
+      return false;
     },
     // position setter
     set position(position) {
@@ -124,8 +157,19 @@ function setup() {
       triangle(-168, 80, -10, -80, 138, 70);
       pop();
     },
-    pick: function (x, y) {
-      console.error("pick lacks implementation!");
+    pick: function (vector, x, y, margin = 50) {
+      let difx = vector.x - x;
+      let dify = vector.y - y;
+
+      if (
+        difx < margin &&
+        difx > margin - 2 * margin &&
+        dify < margin &&
+        dify > margin - 2 * margin
+      ) {
+        return true;
+      }
+      return false;
     },
     // position setter
     set position(position) {
@@ -155,8 +199,19 @@ function setup() {
       triangle(-95, 60, 0, -52, 105, 53);
       pop();
     },
-    pick: function (x, y) {
-      console.error("pick lacks implementation!");
+    pick: function (vector, x, y, margin = 50) {
+      let difx = vector.x - x;
+      let dify = vector.y - y;
+
+      if (
+        difx < margin &&
+        difx > margin - 2 * margin &&
+        dify < margin &&
+        dify > margin - 2 * margin
+      ) {
+        return true;
+      }
+      return false;
     },
     // position setter
     set position(position) {
@@ -186,8 +241,19 @@ function setup() {
       triangle(-104, 53, 0, -52, 105, 53);
       pop();
     },
-    pick: function (x, y) {
-      console.error("pick lacks implementation!");
+    pick: function (vector, x, y, margin = 50) {
+      let difx = vector.x - x;
+      let dify = vector.y - y;
+
+      if (
+        difx < margin &&
+        difx > margin - 2 * margin &&
+        dify < margin &&
+        dify > margin - 2 * margin
+      ) {
+        return true;
+      }
+      return false;
     },
     // position setter
     set position(position) {
@@ -225,8 +291,19 @@ function setup() {
       }
     },
 
-    pick: function (x, y) {
-      console.error("pick lacks implementation!");
+    pick: function (vector, x, y, margin = 50) {
+      let difx = vector.x - x;
+      let dify = vector.y - y;
+
+      if (
+        difx < margin &&
+        difx > margin - 2 * margin &&
+        dify < margin &&
+        dify > margin - 2 * margin
+      ) {
+        return true;
+      }
+      return false;
     },
     // position setter
     set position(position) {
@@ -314,7 +391,13 @@ function mouseDragged() {
 // Implement the mouseWheel function to set the piece rotation
 function mouseWheel(event) {
   let color = get(mouseX, mouseY);
-  let rotationD = event.delta / 10;
+  let rotationD;
+
+  if (event.delta < 0) {
+    rotationD = -0.1;
+  } else {
+    rotationD = 0.1;
+  }
 
   if (equals(color, [0, 0, 255, 255])) {
     // Azul
@@ -360,4 +443,4 @@ function keyPressed() {
   }
 }
 
-// by Sergio Rey 2022
+// by Sergio and Camilo 2022
