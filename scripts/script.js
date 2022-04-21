@@ -214,17 +214,17 @@ function setup() {
       this._color = color("green");
     },
     shape: function () {
-      if(this._rotationY){
+      if (this._rotationY) {
         push();
         quad(50, -12, -53, -100, -52, 75, 54, 186);
         pop();
-      } else { 
+      } else {
         push();
         quad(-50, -12, 53, -100, 52, 75, -54, 186);
         pop();
       }
-     },
-    
+    },
+
     pick: function (x, y) {
       console.error("pick lacks implementation!");
     },
@@ -238,7 +238,7 @@ function setup() {
     },
     get romboide() {
       return true;
-    }
+    },
   };
 
   romboide.randomize();
@@ -342,14 +342,15 @@ function mouseWheel(event) {
 
 function doubleClicked() {
   let color = get(mouseX, mouseY);
-  
+
   if (equals(color, [0, 128, 0, 255])) {
     // Verde
-    if (romboide._rotationY){
-        romboide._rotationY = false
-      } else {
-     romboide._rotationY = true
-  }}
+    if (romboide._rotationY) {
+      romboide._rotationY = false;
+    } else {
+      romboide._rotationY = true;
+    }
+  }
 }
 
 function keyPressed() {
