@@ -1,4 +1,3 @@
-let grid = true;
 let cuadrado,
   trianguloGrande,
   trianguloGrande2,
@@ -7,12 +6,21 @@ let cuadrado,
   trianguloPequeño2,
   romboide;
 
+let button, levels;
+
+let width = 400,
+  height = 400;
+
 const SCALING = 1;
 
 const equals = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
+function redirect() {
+  window.location.replace("./levels.html");
+}
+
 function setup() {
-  createCanvas(860, 800);
+  createCanvas(width, height);
 
   //   Cuadrado Amarrillo
   cuadrado = {
@@ -21,14 +29,12 @@ function setup() {
     _edge: 400 / 2.66,
     _color: color("red"),
     randomize: function () {
-      this._position = createVector(215, 400 / 1.37);
-      this._rotation = 0.785398;
+      this._position = createVector(200, 300);
       this._color = color("yellow");
     },
     shape: function () {
       push();
-      rectMode(CENTER);
-      rect(0, 0, this._edge, this._edge);
+      quad(-100, 0, 0, -100, 100, 0, 0, 100);
       pop();
     },
     pick: function (vector, x, y, margin = 50) {
@@ -64,13 +70,13 @@ function setup() {
     _edge: 150,
     _color: color("red"),
     randomize: function () {
-      this._position = createVector(105, 200);
+      this._position = createVector(100, 200);
       this._rotation = 1.5708;
       this._color = color("blue");
     },
     shape: function () {
       push();
-      triangle(-200, 104, -15, -109, 200, 104);
+      triangle(-200, 100, 0, -100, 200, 100);
       pop();
     },
     pick: function (vector, x, y, margin = 50) {
@@ -106,13 +112,14 @@ function setup() {
     _edge: 150,
     _color: color("red"),
     randomize: function () {
-      this._position = createVector(215, 100);
+      this._position = createVector(200, 100);
       this._rotation = 3.14159;
       this._color = color("orange");
     },
     shape: function () {
       push();
-      triangle(-212, 100, 0, -84, 212, 100);
+      triangle(-200, 100, 0, -100, 200, 100);
+
       pop();
     },
     pick: function (vector, x, y, margin = 50) {
@@ -148,13 +155,12 @@ function setup() {
     _edge: 150,
     _color: color("red"),
     randomize: function () {
-      this._position = createVector(365, 350);
-      this._rotation = 2.35619;
+      this._position = createVector(350, 350);
       this._color = color("red");
     },
     shape: function () {
       push();
-      triangle(-168, 80, -10, -80, 138, 70);
+      triangle(-150, 50, 50, -150, 50, 50);
       pop();
     },
     pick: function (vector, x, y, margin = 50) {
@@ -190,13 +196,12 @@ function setup() {
     _edge: 150,
     _color: color("red"),
     randomize: function () {
-      this._position = createVector(266, 188);
-      this._rotation = 4.78;
+      this._position = createVector(250, 200);
       this._color = color("magenta");
     },
     shape: function () {
       push();
-      triangle(-95, 60, 0, -52, 105, 53);
+      triangle(-50, 0, 50, -100, 50, 100);
       pop();
     },
     pick: function (vector, x, y, margin = 50) {
@@ -232,13 +237,12 @@ function setup() {
     _edge: 150,
     _color: color("red"),
     randomize: function () {
-      this._position = createVector(108, 345);
-      this._rotation = 0;
+      this._position = createVector(100, 350);
       this._color = color("indigo");
     },
     shape: function () {
       push();
-      triangle(-104, 53, 0, -52, 105, 53);
+      triangle(-100, 50, 0, -50, 100, 50);
       pop();
     },
     pick: function (vector, x, y, margin = 50) {
@@ -275,22 +279,21 @@ function setup() {
     _rotationY: false,
     _color: color("red"),
     randomize: function () {
-      this._position = createVector(375, 100);
+      this._position = createVector(350, 125);
       this._rotation = 0;
       this._color = color("green");
     },
     shape: function () {
       if (this._rotationY) {
         push();
-        quad(50, -12, -53, -100, -52, 75, 54, 186);
+        quad(50, -25, -50, -125, -50, 75, 50, 175);
         pop();
       } else {
         push();
-        quad(-50, -12, 53, -100, 52, 75, -54, 186);
+        quad(-50, -25, 50, -125, 50, 75, -50, 175);
         pop();
       }
     },
-
     pick: function (vector, x, y, margin = 50) {
       let difx = vector.x - x;
       let dify = vector.y - y;
@@ -319,13 +322,14 @@ function setup() {
   };
 
   romboide.randomize();
+
+  button = createButton('Jugar');
+  button.mousePressed(redirect);
 }
 
 function draw() {
   background(180);
-  if (grid) {
-    gridHint(10);
-  }
+
   displayPiece(cuadrado);
   displayPiece(trianguloGrande);
   displayPiece(trianguloGrande2);
@@ -345,102 +349,6 @@ function displayPiece(piece) {
   scale(SCALING);
   piece.shape();
   pop();
-}
-
-function gridHint(scale) {
-  push();
-  stroke(0, 255, 255);
-  strokeWeight(1);
-  let i;
-  for (i = 0; i <= width / scale; i++) {
-    line(i * scale, 0, i * scale, height);
-  }
-  for (i = 0; i <= height / scale; i++) {
-    line(0, i * scale, width, i * scale);
-  }
-  pop();
-}
-function mouseDragged() {
-  let color = get(mouseX, mouseY);
-  let vector = createVector(mouseX, mouseY);
-
-  if (equals(color, [0, 0, 255, 255])) {
-    // Azul
-    trianguloGrande.position = vector;
-  } else if (equals(color, [255, 165, 0, 255])) {
-    // Naranja
-    trianguloGrande2.position = vector;
-  } else if (equals(color, [75, 0, 130, 255])) {
-    // Magenta
-    trianguloPequeño2.position = vector;
-  } else if (equals(color, [255, 255, 0, 255])) {
-    // Amarillo
-    cuadrado.position = vector;
-  } else if (equals(color, [255, 0, 255, 255])) {
-    // Indigo
-    trianguloPequeño.position = vector;
-  } else if (equals(color, [0, 128, 0, 255])) {
-    // Verde
-    romboide.position = vector;
-  } else if (equals(color, [255, 0, 0, 255])) {
-    // Rojo
-    trianguloMediano.position = vector;
-  }
-}
-
-// Implement the mouseWheel function to set the piece rotation
-function mouseWheel(event) {
-  let color = get(mouseX, mouseY);
-  let rotationD;
-
-  if (event.delta < 0) {
-    rotationD = -0.1;
-  } else {
-    rotationD = 0.1;
-  }
-
-  if (equals(color, [0, 0, 255, 255])) {
-    // Azul
-    trianguloGrande._rotation = trianguloGrande._rotation - rotationD;
-  } else if (equals(color, [255, 165, 0, 255])) {
-    // Naranja
-    trianguloGrande2._rotation = trianguloGrande2._rotation - rotationD;
-  } else if (equals(color, [75, 0, 130, 255])) {
-    // Magenta
-    trianguloPequeño2._rotation = trianguloPequeño2._rotation - rotationD;
-  } else if (equals(color, [255, 255, 0, 255])) {
-    // Amarillo
-    cuadrado._rotation = cuadrado._rotation - rotationD;
-  } else if (equals(color, [255, 0, 255, 255])) {
-    // Indigo
-    trianguloPequeño._rotation = trianguloPequeño._rotation - rotationD;
-  } else if (equals(color, [0, 128, 0, 255])) {
-    // Verde
-    romboide._rotation = romboide._rotation - rotationD;
-  } else if (equals(color, [255, 0, 0, 255])) {
-    // Rojo
-    trianguloMediano._rotation = trianguloMediano._rotation - rotationD;
-  }
-}
-
-function doubleClicked() {
-  let color = get(mouseX, mouseY);
-
-  if (equals(color, [0, 128, 0, 255])) {
-    // Verde
-    if (romboide._rotationY) {
-      romboide._rotationY = false;
-    } else {
-      romboide._rotationY = true;
-    }
-  }
-}
-
-function keyPressed() {
-  // toggle grid hint
-  if (key === "g") {
-    grid = !grid;
-  }
 }
 
 // by Sergio and Camilo 2022
