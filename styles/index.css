@@ -31,13 +31,27 @@ button {
   width: 200px;
   height: 58px;
   margin: 10px auto;
-  background: white;
+  background: rgb(166, 221, 209);
   border: 0;
   border-radius: 6px;
   color: black;
-  transition: all .08s;
+  transition: all 0.08s;
 }
 
 button:hover {
   border: 1.8px solid black;
+}
+
+input {
+  width: 180px;
+  margin: 10px 0;
+  display: block;
+  font-size: 18px;
+  padding: 16px 10px;
+}
+
+p {
+  color: #fff;
+  font-size: 52px;
+  text-align: center;
 }
