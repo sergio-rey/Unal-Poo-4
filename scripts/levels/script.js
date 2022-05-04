@@ -30,6 +30,13 @@ function validate() {
 function setup() {
 
   createCanvas(width, height);
+  cuadrado = new Cuadrado(color("yellow"));
+  trianguloGrande = new Triangulo(color("blue"));
+  trianguloGrande2 = new Triangulo(color("orange"));
+  trianguloMediano = new Triangulo(color("red"), size = 141);
+  trianguloPequeño2 = new Triangulo(color("magenta"), size = 100);
+  trianguloPequeño  = new Triangulo(color("indigo"), size = 100);
+  romboide = new Romboide(color("green"));
 
   // Configuracion y creacion del nombre del juego 
 
@@ -55,15 +62,15 @@ function setup() {
 function draw() {
   background('#2c2b2b');
 
-  // displayPiece([
-  //   cuadrado,
-  //   trianguloGrande,
-  //   trianguloGrande2,
-  //   trianguloMediano,
-  //   trianguloPequeño,
-  //   trianguloPequeño2,
-  //   romboide,
-  // ]);
+  displayPiece([
+    cuadrado,
+    trianguloGrande,
+    trianguloGrande2,
+    trianguloMediano,
+    trianguloPequeño,
+    trianguloPequeño2,
+    romboide,
+  ]);
 }
 
 function displayPiece(pieces) {
@@ -76,6 +83,13 @@ function displayPiece(pieces) {
     piece.shape();
     pop();
   });
+}
+
+function KeyPressed() {
+  if (key === "n"){
+    newLevel();
+  }
+  
 }
 
 // by Sergio and Camilo 2022

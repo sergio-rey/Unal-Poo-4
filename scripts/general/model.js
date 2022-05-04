@@ -7,14 +7,14 @@ class Cuadrado {
     color,
     position = [0, 0],
     rotation = 0,
-    random = true,
+    getRandomInt = true,
     size = 100
   ) {
     this._rotation = rotation;
     this._color = color;
     this._size = size;
 
-    if (random) {
+    if (getRandomInt) {
       this._position = createVector(
         getRandomInt(0, width),
         getRandomInt(0, height)
@@ -35,7 +35,7 @@ class Romboide {
   constructor(
     color,
     position = [0, 0],
-    random = true,
+    getRandomInt = true,
     rotation = 0,
     rotacionY = false,
     size = 50
@@ -45,8 +45,8 @@ class Romboide {
     this._rotationY = rotacionY;
     this._size = size;
 
-    if (random) {
-      this._position = createVector(random(0, width), random(0, height));
+    if (getRandomInt) {
+      this._position = createVector(getRandomInt(0, width), getRandomInt(0, height));
     } else {
       this._position = createVector(position[0], position[1]);
     }
@@ -85,15 +85,15 @@ class Triangulo {
     color,
     position = [0, 0],
     rotation = 0,
-    random = true,
+    getRandomInt = true,
     size = 200
   ) {
     this._color = color;
     this._rotation = rotation;
     this._size = size;
 
-    if (random) {
-      this._position = createVector(random(0, width), random(0, height));
+    if (getRandomInt) {
+      this._position = createVector(getRandomInt(0, width), getRandomInt(0, height));
     } else {
       this._position = createVector(position[0], position[1]);
     }
