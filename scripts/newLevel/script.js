@@ -6,17 +6,75 @@ let cuadrado,
   trianguloPequeño2,
   romboide;
 
-let button, levels;
+let button, buttonNew, nameLevel, nameLevelText, levels;
+let width = 500,
+  height = 500;
 
-let width = 400,
-  height = 400;
+let level;
 
-const SCALING = 1;
+const SCALING = 0.7;
 
-const equals = (a, b) => JSON.stringify(a) === JSON.stringify(b);
-
-function redirect() {
+function redirect(x) {
   window.location.replace("./levels.html");
+}
+
+function newLevel() {
+  level = {
+    name: nameLevelText,
+    pieces: {
+      trianguloGrande: {
+        position: [trianguloGrande._position.x, trianguloGrande._position.y],
+        rotation: trianguloGrande._rotation,
+      },
+      trianguloGrande2: {
+        position: [trianguloGrande2._position.x, trianguloGrande2._position.y],
+        rotation: trianguloGrande2._rotation,
+      },
+      trianguloMediano: {
+        position: [trianguloMediano._position.x, trianguloMediano._position.y],
+        rotation: trianguloMediano._rotation,
+      },
+      trianguloPequeño: {
+        position: [trianguloPequeño._position.x, trianguloPequeño._position.y],
+        rotation: trianguloPequeño._rotation,
+      },
+      trianguloPequeño2: {
+        position: [
+          trianguloPequeño2._position.x,
+          trianguloPequeño2._position.y,
+        ],
+        rotation: trianguloPequeño2._rotation,
+      },
+      cuadrado: {
+        position: [cuadrado._position.x, cuadrado._position.y],
+        rotation: cuadrado._rotation,
+      },
+      romboide: {
+        position: [romboide._position.x, romboide._position.y],
+        rotation: romboide._rotation,
+        rotationY: romboide._rotationY,
+      },
+    },
+  };
+
+  if (!!nameLevelText) {
+    let i = 0;
+    while (!!levels[i]) {
+      i++;
+    }
+    levels[i] = level;
+    saveJSON(levels, "levels.json", true);
+  } else {
+    alert("Modifica el nombre del nivel");
+  }
+}
+
+function changeName() {
+  nameLevelText = this.value();
+}
+
+function preload() {
+  levels = loadJSON("http://127.0.0.1:5500/data/levels.json");
 }
 
 function setup() {
@@ -29,27 +87,13 @@ function setup() {
     _edge: 400 / 2.66,
     _color: color("red"),
     randomize: function () {
-      this._position = createVector(200, 300);
+      this._position = createVector(random(0, width), random(0, height));
       this._color = color("yellow");
     },
     shape: function () {
       push();
       quad(-100, 0, 0, -100, 100, 0, 0, 100);
       pop();
-    },
-    pick: function (vector, x, y, margin = 50) {
-      let difx = vector.x - x;
-      let dify = vector.y - y;
-
-      if (
-        difx < margin &&
-        difx > margin - 2 * margin &&
-        dify < margin &&
-        dify > margin - 2 * margin
-      ) {
-        return true;
-      }
-      return false;
     },
     // position setter
     set position(position) {
@@ -70,7 +114,7 @@ function setup() {
     _edge: 150,
     _color: color("red"),
     randomize: function () {
-      this._position = createVector(100, 200);
+      this._position = createVector(random(0, width), random(0, height));
       this._rotation = 1.5708;
       this._color = color("blue");
     },
@@ -78,20 +122,6 @@ function setup() {
       push();
       triangle(-200, 100, 0, -100, 200, 100);
       pop();
-    },
-    pick: function (vector, x, y, margin = 50) {
-      let difx = vector.x - x;
-      let dify = vector.y - y;
-
-      if (
-        difx < margin &&
-        difx > margin - 2 * margin &&
-        dify < margin &&
-        dify > margin - 2 * margin
-      ) {
-        return true;
-      }
-      return false;
     },
     // position setter
     set position(position) {
@@ -112,7 +142,7 @@ function setup() {
     _edge: 150,
     _color: color("red"),
     randomize: function () {
-      this._position = createVector(200, 100);
+      this._position = createVector(random(0, width), random(0, height));
       this._rotation = 3.14159;
       this._color = color("orange");
     },
@@ -121,20 +151,6 @@ function setup() {
       triangle(-200, 100, 0, -100, 200, 100);
 
       pop();
-    },
-    pick: function (vector, x, y, margin = 50) {
-      let difx = vector.x - x;
-      let dify = vector.y - y;
-
-      if (
-        difx < margin &&
-        difx > margin - 2 * margin &&
-        dify < margin &&
-        dify > margin - 2 * margin
-      ) {
-        return true;
-      }
-      return false;
     },
     // position setter
     set position(position) {
@@ -155,27 +171,13 @@ function setup() {
     _edge: 150,
     _color: color("red"),
     randomize: function () {
-      this._position = createVector(350, 350);
+      this._position = createVector(random(0, width), random(0, height));
       this._color = color("red");
     },
     shape: function () {
       push();
       triangle(-150, 50, 50, -150, 50, 50);
       pop();
-    },
-    pick: function (vector, x, y, margin = 50) {
-      let difx = vector.x - x;
-      let dify = vector.y - y;
-
-      if (
-        difx < margin &&
-        difx > margin - 2 * margin &&
-        dify < margin &&
-        dify > margin - 2 * margin
-      ) {
-        return true;
-      }
-      return false;
     },
     // position setter
     set position(position) {
@@ -196,27 +198,13 @@ function setup() {
     _edge: 150,
     _color: color("red"),
     randomize: function () {
-      this._position = createVector(250, 200);
+      this._position = createVector(random(0, width), random(0, height));
       this._color = color("magenta");
     },
     shape: function () {
       push();
       triangle(-50, 0, 50, -100, 50, 100);
       pop();
-    },
-    pick: function (vector, x, y, margin = 50) {
-      let difx = vector.x - x;
-      let dify = vector.y - y;
-
-      if (
-        difx < margin &&
-        difx > margin - 2 * margin &&
-        dify < margin &&
-        dify > margin - 2 * margin
-      ) {
-        return true;
-      }
-      return false;
     },
     // position setter
     set position(position) {
@@ -237,27 +225,13 @@ function setup() {
     _edge: 150,
     _color: color("red"),
     randomize: function () {
-      this._position = createVector(100, 350);
+      this._position = createVector(random(0, width), random(0, height));
       this._color = color("indigo");
     },
     shape: function () {
       push();
       triangle(-100, 50, 0, -50, 100, 50);
       pop();
-    },
-    pick: function (vector, x, y, margin = 50) {
-      let difx = vector.x - x;
-      let dify = vector.y - y;
-
-      if (
-        difx < margin &&
-        difx > margin - 2 * margin &&
-        dify < margin &&
-        dify > margin - 2 * margin
-      ) {
-        return true;
-      }
-      return false;
     },
     // position setter
     set position(position) {
@@ -279,7 +253,7 @@ function setup() {
     _rotationY: false,
     _color: color("red"),
     randomize: function () {
-      this._position = createVector(350, 125);
+      this._position = createVector(random(0, width), random(0, height));
       this._rotation = 0;
       this._color = color("green");
     },
@@ -293,20 +267,6 @@ function setup() {
         quad(-50, -25, 50, -125, 50, 75, -50, 175);
         pop();
       }
-    },
-    pick: function (vector, x, y, margin = 50) {
-      let difx = vector.x - x;
-      let dify = vector.y - y;
-
-      if (
-        difx < margin &&
-        difx > margin - 2 * margin &&
-        dify < margin &&
-        dify > margin - 2 * margin
-      ) {
-        return true;
-      }
-      return false;
     },
     // position setter
     set position(position) {
@@ -323,8 +283,17 @@ function setup() {
 
   romboide.randomize();
 
-  button = createButton('Jugar');
+  nameLevel = createInput("Nombre del nivel");
+  nameLevel.position(20, 260);
+  nameLevel.input(changeName);
+
+  button = createButton("Niveles");
   button.mousePressed(redirect);
+  button.position(20, 100);
+
+  buttonNew = createButton("Crear");
+  buttonNew.mousePressed(newLevel);
+  buttonNew.position(20, 180);
 }
 
 function draw() {

@@ -15,13 +15,36 @@ body {
     #ffcc70 100%
   );
   background-attachment: fixed;
-  font-family: "Square Peg", cursive;
+}
+
+canvas {
+  border: 1px solid black;
+  border-radius: 4px;
 }
 
 h1 {
   color: #fff;
   font-size: 62px;
   text-align: center;
+  margin: 5px, auto; 
+  font-family: "Square Peg", cursive;
+
+}
+
+p {
+  width: 200px;
+  position: absolute;
+  color: #fff;
+  font-size: 24px;
+  left: calc((100% / 2 - 500px / 2) / 2 - 100px);
+  top: 320px;
+  line-height: 35px;
+  text-align: center;
+
+}
+
+p span {
+  font-size: 38px;
 }
 
 button {
@@ -40,18 +63,4 @@ button {
 
 button:hover {
   border: 1.8px solid black;
-}
-
-input {
-  width: 180px;
-  margin: 10px 0;
-  display: block;
-  font-size: 18px;
-  padding: 16px 10px;
-}
-
-p {
-  color: #fff;
-  font-size: 52px;
-  text-align: center;
 }

@@ -1,0 +1,102 @@
+[{
+    "name": "La Tortuga",
+    "pieces": {
+      "trianguloGrande": {
+        "position": [210.5, 300.5],
+        "rotation": 0.7707999999999993
+      },
+      "trianguloGrande2": {
+        "position": [208.5, 201.5],
+        "rotation": 2.3415900000000027
+      },
+      "trianguloMediano": {
+        "position": [307.5, 195.5],
+        "rotation": -0.8000000000000002
+      },
+      "trianguloPequeño": {
+        "position": [293.5, 390.5],
+        "rotation": 0
+      },
+      "trianguloPequeño2": {
+        "position": [291.5, 95.5],
+        "rotation": 2
+      },
+      "cuadrado": {
+        "position": [429.5, 247.5],
+        "rotation": -1.3877787807814457e-17
+      },
+      "romboide": {
+        "position": [320.5, 280.5],
+        "rotation": 0.8000000000000002,
+        "rotationY": true
+      }
+    }
+  },
+  {
+    "name": "La Casa",
+    "pieces": {
+      "trianguloGrande": {
+        "position": [305.5, 289.5],
+        "rotation": -0.029200000000000892
+      },
+      "trianguloGrande2": {
+        "position": [269.5, 430.5],
+        "rotation": -0.008409999999997461
+      },
+      "trianguloMediano": {
+        "position": [164.5, 395.5],
+        "rotation": 3.149999999999997
+      },
+      "trianguloPequeño": {
+        "position": [339.5, 394.5],
+        "rotation": -1.600000000000001
+      },
+      "trianguloPequeño2": {
+        "position": [375.5, 428.5],
+        "rotation": 4.699999999999991
+      },
+      "cuadrado": {
+        "position": [215.5, 210.5],
+        "rotation": -0.8000000000000002
+      },
+      "romboide": {
+        "position": [180.5, 298.5],
+        "rotation": 0.7500000000000001,
+        "rotationY": false
+      }
+    }
+  }, {
+    "name": "El Pez",
+    "pieces": {
+      "trianguloGrande": {
+        "position": [148.5, 192.5],
+        "rotation": 2.3508000000000004
+      },
+      "trianguloGrande2": {
+        "position": [149.5, 291.5],
+        "rotation": 7.061589999999935
+      },
+      "trianguloMediano": {
+        "position": [346.5, 193.5],
+        "rotation": -3.9200000000000026
+      },
+      "trianguloPequeño": {
+        "position": [225.5, 318.5],
+        "rotation": -5.499999999999971
+      },
+      "trianguloPequeño2": {
+        "position": [223.5, 168.5],
+        "rotation": 3.9200000000000026
+      },
+      "cuadrado": {
+        "position": [249.5, 243.5],
+        "rotation": 0.7800000000000004
+      },
+      "romboide": {
+        "position": [336.5, 283.5],
+        "rotation": -0.7800000000000004,
+        "rotationY": false
+      }
+    }
+  }
+]
