@@ -6,25 +6,25 @@ function mouseDragged() {
   
     if (equals(color, [0, 0, 255, 255])) {
       // Azul
-      trianguloGrande._position = vector;
+      trianguloGrande.setPosition(vector);
     } else if (equals(color, [255, 165, 0, 255])) {
       // Naranja
-      trianguloGrande2._position = vector;
+      trianguloGrande2.setPosition(vector);
     } else if (equals(color, [75, 0, 130, 255])) {
       // Magenta
-      trianguloPequeño2._position = vector;
+      trianguloPequeño2.setPosition(vector);
     } else if (equals(color, [255, 255, 0, 255])) {
       // Amarillo
-      cuadrado._position = vector;
+      cuadrado.setPosition(vector);
     } else if (equals(color, [255, 0, 255, 255])) {
       // Indigo
-      trianguloPequeño._position = vector;
+      trianguloPequeño.setPosition(vector);
     } else if (equals(color, [0, 128, 0, 255])) {
       // Verde
-      romboide._position = vector;
+      romboide.setPosition(vector);
     } else if (equals(color, [255, 0, 0, 255])) {
       // Rojo
-      trianguloMediano._position = vector;
+      trianguloMediano.setPosition(vector);
     }
   }
   
@@ -41,25 +41,25 @@ function mouseDragged() {
   
     if (equals(color, [0, 0, 255, 255])) {
       // Azul
-      trianguloGrande._rotation = trianguloGrande._rotation - rotationD;
+      trianguloGrande.setRotation(trianguloGrande.getRotation() - rotationD);
     } else if (equals(color, [255, 165, 0, 255])) {
       // Naranja
-      trianguloGrande2._rotation = trianguloGrande2._rotation - rotationD;
+      trianguloGrande2.setRotation(trianguloGrande2.getRotation() - rotationD);
     } else if (equals(color, [75, 0, 130, 255])) {
       // Magenta
-      trianguloPequeño2._rotation = trianguloPequeño2._rotation - rotationD;
+      trianguloPequeño2.setRotation(trianguloPequeño2.getRotation() - rotationD);
     } else if (equals(color, [255, 255, 0, 255])) {
       // Amarillo
-      cuadrado._rotation = cuadrado._rotation - rotationD;
+      cuadrado.setRotation(cuadrado.getRotation() - rotationD);
     } else if (equals(color, [255, 0, 255, 255])) {
       // Indigo
-      trianguloPequeño._rotation = trianguloPequeño._rotation - rotationD;
+      trianguloPequeño.setRotation(trianguloPequeño.getRotation() - rotationD);
     } else if (equals(color, [0, 128, 0, 255])) {
       // Verde
-      romboide._rotation = romboide._rotation - rotationD;
+      romboide.setRotation(romboide.getRotation() - rotationD);
     } else if (equals(color, [255, 0, 0, 255])) {
       // Rojo
-      trianguloMediano._rotation = trianguloMediano._rotation - rotationD;
+      trianguloMediano.setRotation(trianguloMediano.getRotation() - rotationD);
     }
   }
   
@@ -68,10 +68,10 @@ function mouseDragged() {
   
     if (equals(color, [0, 128, 0, 255])) {
       // Verde
-      if (romboide._rotationY) {
-        romboide._rotationY = false;
+      if (romboide.getRotationY()) {
+        romboide.setRotationY(false);
       } else {
-        romboide._rotationY = true;
+        romboide.setRotationY(true);
       }
     }
   }

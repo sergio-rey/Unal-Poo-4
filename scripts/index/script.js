@@ -77,16 +77,4 @@ function draw() {
   ]);
 }
 
-function displayPiece(pieces) {
-  pieces.forEach(function (piece) {
-    push();
-    translate(piece._position);
-    rotate(piece._rotation);
-    fill(piece._color);
-    scale(SCALING);
-    piece.shape();
-    pop();
-  });
-}
-
 // by Sergio and Camilo 2022
